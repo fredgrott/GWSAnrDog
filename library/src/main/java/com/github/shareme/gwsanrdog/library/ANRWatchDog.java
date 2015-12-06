@@ -7,7 +7,40 @@ import android.util.Log;
 
 
 /**
- * ANRWatchDog
+ * ANRWatchDog to use in your application class:
+ *
+ * <code>
+ *
+ *
+ *     public void onCreate() {
+ *           super.onCreate();
+ *
+ *          if (!BuildConfig.DEBUG) {
+ *                 new ANRWatchDog().start();
+ *         }
+ *
+ * }
+ *
+ * </code>
+ *
+ * or if not crashing the application upon anr than
+ *
+ * <code>
+ *     public void onCreate(){
+ *         super.onCreate():
+ *
+ *         if(!BuildConfig.DEBUG){
+ *             new ANRWatchDog().setANRListener(new ANRWatchDog.ANRListener() {
+ *
+ *                   public void onAppNotResponding(ANRError error) {
+ *                    // Handle the error. For example, log it to HockeyApp:
+ *                    ExceptionHandler.saveException(error, new CrashManager());
+ *                  }
+ *            }).start();
+ *
+ *         }
+ *     }
+ * </code>
  * Created by fgrott on 11/17/2015.
  */
 @SuppressWarnings("unused")
